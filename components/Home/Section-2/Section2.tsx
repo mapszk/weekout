@@ -39,7 +39,7 @@ const Section2: FC = () => {
   return (
     <Center
       id="section2"
-      flexDir={isLargerThan720 ? "row" : "column"}
+      flexDirection={isLargerThan720 ? "row" : "column"}
       h="500px"
       w="full"
     >

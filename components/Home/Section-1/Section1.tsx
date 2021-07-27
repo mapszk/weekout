@@ -41,14 +41,7 @@ const Section1: FC = () => {
         </Text>
         <LinkBox>
           <LinkOverlay href="#section2">
-            <Button
-              mt={6}
-              bgGradient="linear(to-r, third.500, secondary.500)"
-              color="white"
-              boxShadow="lg"
-              _focus={{ outline: "1px" }}
-              _hover={{ opacity: 0.8, boxShadow: "2xl" }}
-            >
+            <Button mt={6} variant="gradientSecondary">
               See more
             </Button>
           </LinkOverlay>

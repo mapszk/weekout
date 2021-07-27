@@ -5,7 +5,7 @@ import { customTheme } from "theme"
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={customTheme}>
-      <Container maxW="container.lg" centerContent>
+      <Container maxW="container.lg" mx="auto">
         <Component {...pageProps} />
       </Container>
     </ChakraProvider>
