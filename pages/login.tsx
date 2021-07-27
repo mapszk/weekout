@@ -1,16 +1,7 @@
-import {
-  Button,
-  Center,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  Link,
-  Stack,
-} from "@chakra-ui/react"
+import { Center, Flex, Link } from "@chakra-ui/react"
 import Head from "next/head"
 import { FC } from "react"
+import LoginForm from "components/LoginForm/LoginForm"
 
 const login: FC = () => {
   return (
@@ -36,25 +27,7 @@ const login: FC = () => {
             Weekout
           </Link>
         </Center>
-        <Stack mt={24} textAlign="center" w="full" maxW="450px">
-          <Heading color="primary.500">Log in</Heading>
-          <form>
-            <FormControl mb={4}>
-              <FormLabel>Email</FormLabel>
-              <Input />
-            </FormControl>
-            <FormControl mb={6}>
-              <FormLabel>Password</FormLabel>
-              <Input />
-            </FormControl>
-            <FormControl mb={6}>
-              <Button type="submit" isFullWidth variant="gradientPrimary">
-                Log in
-              </Button>
-            </FormControl>
-            <Link href="/register">{"I don't have an account"}</Link>
-          </form>
-        </Stack>
+        <LoginForm />
       </Flex>
     </>
   )
