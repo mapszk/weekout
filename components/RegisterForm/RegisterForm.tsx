@@ -1,4 +1,3 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react"
 import {
   Button,
   ButtonGroup,
@@ -12,19 +11,21 @@ import {
   Stack,
   useToast,
 } from "@chakra-ui/react"
+import { logInWithGoogle } from "components/LoginForm/logInWithGoogle"
+import { useRouter } from "next/dist/client/router"
+
+import { ChangeEvent, FC, FormEvent, useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { FcGoogle } from "react-icons/fc"
-import { logInWithEmail } from "./logInWithEmail"
-import { useRouter } from "next/dist/client/router"
-import { logInWithGoogle } from "./logInWithGoogle"
+import { registerWithEmail } from "./registerWithEmail"
 
-const LoginForm: FC = () => {
+const RegisterForm: FC = () => {
   const toast = useToast()
   const router = useRouter()
-  const [showPass, setShowPass] = useState<boolean>(false)
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [showPass, setShowPass] = useState<boolean>(false)
 
   const handleWithGoogle = async () => {
     const { alertMsg, alertStatus } = await logInWithGoogle(setIsSubmitting)
@@ -47,13 +48,13 @@ const LoginForm: FC = () => {
   }
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const { alertMsg, alertStatus } = await logInWithEmail(
+    const { alertMsg, alertStatus } = await registerWithEmail(
       email,
       password,
       setIsSubmitting
     )
     if (alertStatus === "success") {
-      router.push("/")
+      router.push("/login")
       return toast({
         position: "top",
         status: alertStatus,
@@ -70,7 +71,7 @@ const LoginForm: FC = () => {
 
   return (
     <Stack mt={24} textAlign="center" w="full" maxW="450px">
-      <Heading color="primary.500">Log in</Heading>
+      <Heading color="primary.500">Create an account</Heading>
       <form onSubmit={handleSubmit}>
         <FormControl mb={4}>
           <FormLabel fontWeight="normal">Email</FormLabel>
@@ -85,11 +86,11 @@ const LoginForm: FC = () => {
           <FormLabel fontWeight="normal">Password</FormLabel>
           <InputGroup>
             <Input
-              type={showPass ? "text" : "password"}
               value={password}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setPassword(e.target.value)
               }
+              type={showPass ? "text" : "password"}
             />
             <InputRightElement
               onClick={() => setShowPass(!showPass)}
@@ -110,7 +111,7 @@ const LoginForm: FC = () => {
             colorScheme="primary"
             isFullWidth
           >
-            <FcGoogle /> With Google
+            <FcGoogle /> With google
           </Button>
           <Button
             isLoading={isSubmitting}
@@ -118,13 +119,13 @@ const LoginForm: FC = () => {
             isFullWidth
             variant="gradientPrimary"
           >
-            Log in
+            Create
           </Button>
         </ButtonGroup>
       </form>
-      <Link href="/register">{"I don't have an account"}</Link>
+      <Link href="/login">{"I have an account"}</Link>
     </Stack>
   )
 }
 
-export default LoginForm
+export default RegisterForm
