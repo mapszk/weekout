@@ -1,6 +1,6 @@
 import { extendTheme } from "@chakra-ui/react"
-import { Button } from "components/Button"
-import { Input } from "components/Input"
+import { Button } from "components/common/Button"
+import { Input } from "components/common/Input"
 
 export const customTheme = extendTheme({
   fonts: {

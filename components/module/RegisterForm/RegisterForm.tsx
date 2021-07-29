@@ -11,9 +11,8 @@ import {
   Stack,
   useToast,
 } from "@chakra-ui/react"
-import { logInWithGoogle } from "components/LoginForm/logInWithGoogle"
+import { logInWithGoogle } from "components/module/LoginForm/logInWithGoogle"
 import { useRouter } from "next/dist/client/router"
-
 import { ChangeEvent, FC, FormEvent, useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { FcGoogle } from "react-icons/fc"
@@ -30,9 +29,7 @@ const RegisterForm: FC = () => {
   const handleWithGoogle = async () => {
     const { alertMsg, alertStatus } = await logInWithGoogle(setIsSubmitting)
     if (alertStatus === "success") {
-      setTimeout(() => {
-        router.push("/")
-      }, 1500)
+      router.push("/")
       return toast({
         position: "top",
         status: alertStatus,

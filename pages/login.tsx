@@ -1,7 +1,7 @@
 import { Center, Flex, Link } from "@chakra-ui/react"
 import Head from "next/head"
 import { FC } from "react"
-import LoginForm from "components/LoginForm/LoginForm"
+import LoginForm from "components/module/LoginForm/LoginForm"
 
 const login: FC = () => {
   return (
