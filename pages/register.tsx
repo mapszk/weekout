@@ -1,7 +1,10 @@
 import { Center, Flex, Link } from "@chakra-ui/react"
 import RegisterForm from "components/module/RegisterForm/RegisterForm"
+import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { FC } from "react"
+import nookies from "nookies"
+import { adminAuth } from "util/firebaseServer"
 
 const register: FC = () => {
   return (
@@ -33,4 +36,20 @@ const register: FC = () => {
   )
 }
 
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = nookies.get(ctx)
+  return await adminAuth
+    .verifyIdToken(cookies.token)
+    .then(() => {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      }
+    })
+    .catch(() => {
+      return { props: {} }
+    })
+}
 export default register

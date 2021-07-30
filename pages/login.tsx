@@ -1,7 +1,10 @@
 import { Center, Flex, Link } from "@chakra-ui/react"
 import Head from "next/head"
 import { FC } from "react"
+import nookies from "nookies"
 import LoginForm from "components/module/LoginForm/LoginForm"
+import { GetServerSideProps } from "next"
+import { adminAuth } from "util/firebaseServer"
 
 const login: FC = () => {
   return (
@@ -33,4 +36,22 @@ const login: FC = () => {
   )
 }
 
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = nookies.get(ctx)
+  return await adminAuth
+    .verifyIdToken(cookies.token)
+    .then(() => {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      }
+    })
+    .catch(() => {
+      return {
+        props: {},
+      }
+    })
+}
 export default login
