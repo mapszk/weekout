@@ -1,4 +1,4 @@
-import { clientAuth } from "util/firebaseClient"
+import { clientAuth, clientDb } from "util/firebaseClient"
 
 export type Status = "error" | "success"
 export interface Alert {
@@ -21,8 +21,64 @@ export const registerWithEmail = async (
   } else {
     return await clientAuth
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        setIsSubmitting(false)
+      .then(async (userCredential) => {
+        const { user } = userCredential
+        await clientDb
+          .collection("users")
+          .doc(user?.uid)
+          .get()
+          .then(async (doc) => {
+            if (!doc.exists) {
+              await clientDb
+                .collection("users")
+                .doc(user?.uid)
+                .set({
+                  timer: 0,
+                  sunday: {
+                    noneVolume: [],
+                    minVolume: [],
+                    maxVolume: [],
+                    plusMaxVolume: [],
+                  },
+                  monday: {
+                    noneVolume: [],
+                    minVolume: [],
+                    maxVolume: [],
+                    plusMaxVolume: [],
+                  },
+                  tuesday: {
+                    noneVolume: [],
+                    minVolume: [],
+                    maxVolume: [],
+                    plusMaxVolume: [],
+                  },
+                  wednesday: {
+                    noneVolume: [],
+                    minVolume: [],
+                    maxVolume: [],
+                    plusMaxVolume: [],
+                  },
+                  thursday: {
+                    noneVolume: [],
+                    minVolume: [],
+                    maxVolume: [],
+                    plusMaxVolume: [],
+                  },
+                  friday: {
+                    noneVolume: [],
+                    minVolume: [],
+                    maxVolume: [],
+                    plusMaxVolume: [],
+                  },
+                  saturday: {
+                    noneVolume: [],
+                    minVolume: [],
+                    maxVolume: [],
+                    plusMaxVolume: [],
+                  },
+                })
+            }
+          })
         return {
           alertMsg: "Account created",
           alertStatus: "success" as Status,

@@ -29,9 +29,7 @@ const LoginForm: FC = () => {
   const handleWithGoogle = async () => {
     const { alertMsg, alertStatus } = await logInWithGoogle(setIsSubmitting)
     if (alertStatus === "success") {
-      setTimeout(() => {
-        router.push("/")
-      }, 1500)
+      router.push("/")
       return toast({
         position: "top",
         status: alertStatus,
