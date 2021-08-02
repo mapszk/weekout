@@ -4,6 +4,7 @@ import { BsChevronRight, BsChevronLeft } from "react-icons/bs"
 
 interface Props {
   dayName: string
+  isEdit?: boolean
 }
 const getLink = (dayName: string, where: string) => {
   if (where === "next") {
@@ -43,12 +44,16 @@ const getLink = (dayName: string, where: string) => {
   }
 }
 
-export const NextDay: FC<Props> = ({ dayName }) => {
+export const NextDay: FC<Props> = ({ isEdit, dayName }) => {
   return (
     <LinkBox>
-      <LinkOverlay href={getLink(dayName, "next")}>
+      <LinkOverlay
+        href={
+          isEdit ? `${getLink(dayName, "next")}/edit` : getLink(dayName, "next")
+        }
+      >
         <Button
-          color="third.900"
+          color={isEdit ? "secondary.600" : "third.900"}
           boxShadow="none"
           variant="ghost"
           fontSize="2xl"
@@ -61,12 +66,16 @@ export const NextDay: FC<Props> = ({ dayName }) => {
   )
 }
 
-export const PrevDay: FC<Props> = ({ dayName }) => {
+export const PrevDay: FC<Props> = ({ isEdit, dayName }) => {
   return (
     <LinkBox>
-      <LinkOverlay href={getLink(dayName, "prev")}>
+      <LinkOverlay
+        href={
+          isEdit ? `${getLink(dayName, "prev")}/edit` : getLink(dayName, "prev")
+        }
+      >
         <Button
-          color="third.900"
+          color={isEdit ? "secondary.600" : "third.900"}
           boxShadow="none"
           variant="ghost"
           fontSize="2xl"

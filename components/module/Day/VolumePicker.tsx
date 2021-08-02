@@ -14,53 +14,61 @@ const VolumePicker: FC<Props> = ({ activeVolume, setActiveVolume }) => {
     localStorage.setItem("selectedVolume", value)
   }
   return (
-    <Box>
-      <Heading
-        textAlign={isBreakpoint ? "center" : "left"}
-        mb={4}
-        color="secondary.500"
-        size="sm"
-      >
-        Volume training:
-      </Heading>
-      <HStack>
-        <Tag
-          cursor="pointer"
-          onClick={() => handleClick("NONE")}
+    <Box
+      mt={6}
+      mb={4}
+      display="flex"
+      justifyContent={isBreakpoint ? "center" : "flex-start"}
+    >
+      <Box>
+        <Heading
+          textAlign={isBreakpoint ? "center" : "left"}
+          mb={3}
+          fontWeight="medium"
+          color="gray.500"
           size="sm"
-          colorScheme={activeVolume === "NONE" ? "gray" : "gray"}
-          opacity={activeVolume === "NONE" ? 1 : 0.5}
         >
-          NONE
-        </Tag>
-        <Tag
-          cursor="pointer"
-          onClick={() => handleClick("MIN")}
-          size="sm"
-          colorScheme={activeVolume === "MIN" ? "green" : "gray"}
-          opacity={activeVolume === "MIN" ? 1 : 0.5}
-        >
-          MIN
-        </Tag>
-        <Tag
-          cursor="pointer"
-          onClick={() => handleClick("MAX")}
-          size="sm"
-          colorScheme={activeVolume === "MAX" ? "yellow" : "gray"}
-          opacity={activeVolume === "MAX" ? 1 : 0.5}
-        >
-          MAX
-        </Tag>
-        <Tag
-          cursor="pointer"
-          onClick={() => handleClick("+MAX")}
-          size="sm"
-          colorScheme={activeVolume === "+MAX" ? "red" : "gray"}
-          opacity={activeVolume === "+MAX" ? 1 : 0.5}
-        >
-          +MAX
-        </Tag>
-      </HStack>
+          Volume training:
+        </Heading>
+        <HStack>
+          <Tag
+            cursor="pointer"
+            onClick={() => handleClick("NONE")}
+            size="sm"
+            colorScheme={activeVolume === "NONE" ? "gray" : "gray"}
+            opacity={activeVolume === "NONE" ? 1 : 0.5}
+          >
+            NONE
+          </Tag>
+          <Tag
+            cursor="pointer"
+            onClick={() => handleClick("MIN")}
+            size="sm"
+            colorScheme={activeVolume === "MIN" ? "green" : "gray"}
+            opacity={activeVolume === "MIN" ? 1 : 0.5}
+          >
+            MIN
+          </Tag>
+          <Tag
+            cursor="pointer"
+            onClick={() => handleClick("MAX")}
+            size="sm"
+            colorScheme={activeVolume === "MAX" ? "yellow" : "gray"}
+            opacity={activeVolume === "MAX" ? 1 : 0.5}
+          >
+            MAX
+          </Tag>
+          <Tag
+            cursor="pointer"
+            onClick={() => handleClick("+MAX")}
+            size="sm"
+            colorScheme={activeVolume === "+MAX" ? "red" : "gray"}
+            opacity={activeVolume === "+MAX" ? 1 : 0.5}
+          >
+            +MAX
+          </Tag>
+        </HStack>
+      </Box>
     </Box>
   )
 }

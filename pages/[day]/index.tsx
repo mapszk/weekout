@@ -32,16 +32,10 @@ const day: FC<Props> = ({ dayName, dayData }) => {
         <title>{`Weekout - ${capitalize(dayName)}`}</title>
       </Head>
       <DayHeader dayName={dayName} />
-      <Box
-        mb={4}
-        display="flex"
-        justifyContent={isBreakpoint ? "center" : "flex-start"}
-      >
-        <VolumePicker
-          activeVolume={activeVolume}
-          setActiveVolume={setActiveVolume}
-        />
-      </Box>
+      <VolumePicker
+        activeVolume={activeVolume}
+        setActiveVolume={setActiveVolume}
+      />
       <Flex direction={isBreakpoint ? "column" : "row"}>
         <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
           <ExerciseTable

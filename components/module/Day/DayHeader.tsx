@@ -15,9 +15,10 @@ import { NextDay, PrevDay } from "./SwitchDayButtons"
 
 interface Props {
   dayName: string
+  isEdit?: boolean
 }
 
-const DayHeader: FC<Props> = ({ dayName }) => {
+const DayHeader: FC<Props> = ({ dayName, isEdit }) => {
   const isBreakpoint = useMediaQuery(720)
   const [isLoading, setIsLoading] = useState(false)
   const handleLogOut = async () => {
@@ -29,8 +30,7 @@ const DayHeader: FC<Props> = ({ dayName }) => {
   }
   return (
     <Flex
-      mb={2}
-      mt={3}
+      my={4}
       w="full"
       spacing={4}
       justfiyContent={isBreakpoint ? "center" : "initial"}
@@ -47,25 +47,49 @@ const DayHeader: FC<Props> = ({ dayName }) => {
           onClick={handleLogOut}
           mb={isBreakpoint ? 0 : 2}
           size="sm"
-          colorScheme="primary"
+          colorScheme={isEdit ? "secondary" : "primary"}
           variant="outline"
         >
           Log out
         </Button>
         <LinkBox>
-          <LinkOverlay href={`/${dayName}/edit`}>
-            <Button isLoading={isLoading} size="sm" colorScheme="primary">
-              Edit day
+          <LinkOverlay href={isEdit ? `/${dayName}` : `/${dayName}/edit`}>
+            <Button
+              isLoading={isLoading}
+              size="sm"
+              colorScheme={isEdit ? "secondary" : "primary"}
+            >
+              {isEdit ? "Exit edit mode" : "Edit day"}
             </Button>
           </LinkOverlay>
         </LinkBox>
       </Flex>
-      <HStack justifyContent={isBreakpoint ? "center" : "flex-start"}>
-        <PrevDay dayName={dayName} />
-        <Heading size="2xl" color="primary.500">
+      <HStack
+        mt={isBreakpoint ? 2 : 0}
+        justifyContent={isBreakpoint ? "center" : "flex-start"}
+      >
+        <PrevDay dayName={dayName} isEdit={isEdit} />
+        <Heading
+          position="relative"
+          _after={
+            isEdit
+              ? {
+                  content: "'edit mode'",
+                  fontSize: "sm",
+                  fontWeight: "medium",
+                  position: "absolute",
+                  bottom: -3,
+                  left: 0,
+                  color: "secondary.500",
+                }
+              : {}
+          }
+          size="2xl"
+          color={isEdit ? "third.500" : "primary.500"}
+        >
           {capitalize(dayName)}
         </Heading>
-        <NextDay dayName={dayName} />
+        <NextDay dayName={dayName} isEdit={isEdit} />
       </HStack>
       {!isBreakpoint && <Spacer />}
     </Flex>

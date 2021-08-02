@@ -1,4 +1,5 @@
 export interface Exercise {
+  muscle: string
   name: string
   reps: number
   series: number
