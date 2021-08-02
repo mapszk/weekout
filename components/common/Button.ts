@@ -3,7 +3,7 @@ export const Button = {
     gradientPrimary: {
       bgGradient: "linear(to-r, primary.500, third.500)",
       color: "white",
-      boxShadow: "xl",
+      boxShadow: "base",
       _hover: {
         opacity: "0.8",
         boxShadow: "lg",
@@ -12,7 +12,7 @@ export const Button = {
     gradientSecondary: {
       bgGradient: "linear(to-r, third.500, secondary.500)",
       color: "white",
-      boxShadow: "xl",
+      boxShadow: "base",
       _hover: {
         opacity: "0.8",
         boxShadow: "lg",
@@ -20,18 +20,21 @@ export const Button = {
     },
     outline: {
       border: "1px solid",
-      boxShadow: "xl",
+      boxShadow: "base",
       _hover: {
         bgColor: "transparent",
         opacity: "0.8",
       },
     },
     ghost: {
-      boxShadow: "xl",
+      boxShadow: "base",
       _hover: {
         bgColor: "transparent",
         opacity: "0.8",
       },
     },
+  },
+  baseStyle: {
+    boxShadow: "base",
   },
 }
