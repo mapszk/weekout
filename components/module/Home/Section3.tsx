@@ -75,21 +75,21 @@ const Section3: FC = () => {
           </Tag>
           <Tag
             cursor="pointer"
-            onClick={() => setActiveVolume("MAX")}
+            onClick={() => setActiveVolume("MID")}
             size="sm"
-            colorScheme={activeVolume === "MAX" ? "yellow" : "gray"}
-            opacity={activeVolume === "MAX" ? 1 : 0.5}
+            colorScheme={activeVolume === "MID" ? "yellow" : "gray"}
+            opacity={activeVolume === "MID" ? 1 : 0.5}
           >
-            MAX
+            MID
           </Tag>
           <Tag
             cursor="pointer"
-            onClick={() => setActiveVolume("+MAX")}
+            onClick={() => setActiveVolume("MAX")}
             size="sm"
-            colorScheme={activeVolume === "+MAX" ? "red" : "gray"}
-            opacity={activeVolume === "+MAX" ? 1 : 0.5}
+            colorScheme={activeVolume === "MAX" ? "red" : "gray"}
+            opacity={activeVolume === "MAX" ? 1 : 0.5}
           >
-            +MAX
+            MAX
           </Tag>
         </HStack>
         <Collapse in={activeVolume === "NONE"}>

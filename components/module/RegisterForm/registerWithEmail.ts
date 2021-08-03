@@ -33,7 +33,6 @@ export const registerWithEmail = async (
                 .collection("users")
                 .doc(user?.uid)
                 .set({
-                  timer: 0,
                   sunday: {
                     noneVolume: [],
                     minVolume: [],
