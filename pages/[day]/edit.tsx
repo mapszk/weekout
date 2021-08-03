@@ -20,6 +20,7 @@ interface Props {
 const edit: FC<Props> = ({ dayName, dayData }) => {
   const isBreakpoint = useMediaQuery(720)
   const [activeVolume, setActiveVolume] = useState<string>("NONE")
+
   useEffect(() => {
     if (localStorage.getItem("selectedVolume") !== null) {
       setActiveVolume(localStorage.getItem("selectedVolume") as string)
@@ -39,6 +40,7 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
       <Flex direction={isBreakpoint ? "column" : "row"}>
         <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
           <ExerciseTableEdit
+            dayName={dayName}
             activeVolume={activeVolume}
             noneVolume={dayData.noneVolume}
             minVolume={dayData.minVolume}

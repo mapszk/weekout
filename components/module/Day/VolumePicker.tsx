@@ -15,8 +15,7 @@ const VolumePicker: FC<Props> = ({ activeVolume, setActiveVolume }) => {
   }
   return (
     <Box
-      mt={6}
-      mb={4}
+      my={4}
       display="flex"
       justifyContent={isBreakpoint ? "center" : "flex-start"}
     >

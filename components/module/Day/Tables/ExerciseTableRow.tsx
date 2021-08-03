@@ -1,7 +1,7 @@
 import { Td, Tr } from "@chakra-ui/react"
 import { FC } from "react"
 import { capitalize } from "util/capitalize"
-import { Exercise } from "./dayTypes"
+import { Exercise } from "../dayTypes"
 
 interface Props {
   volume: any
@@ -22,33 +22,35 @@ const sameMuscle = (
 
 const ExerciseTableRow: FC<Props> = ({ volume }) => {
   if (volume.length) {
-    return volume.map((exercise: Exercise, index: number) => (
-      <>
-        {!sameMuscle(volume, exercise, index) && (
-          <Tr>
-            <Td
-              px={0}
-              py={3}
-              fontSize="md"
-              color="third.700"
-              fontWeight="semibold"
-              colSpan={3}
-            >
-              {capitalize(exercise.muscle)}
+    return volume
+      .sort((a: Exercise, b: Exercise) => a.muscle.localeCompare(b.muscle))
+      .map((exercise: Exercise, index: number) => (
+        <>
+          {!sameMuscle(volume, exercise, index) && (
+            <Tr>
+              <Td
+                px={0}
+                py={3}
+                fontSize="md"
+                color="third.700"
+                fontWeight="semibold"
+                colSpan={3}
+              >
+                {capitalize(exercise.muscle)}
+              </Td>
+            </Tr>
+          )}
+          <Tr _last={{ h: "100%" }}>
+            <Td px={0.5}>{exercise.name}</Td>
+            <Td isNumeric px={0} pl={6}>
+              {exercise.reps}
+            </Td>
+            <Td isNumeric px={0} pl={6} pr={1}>
+              {exercise.series}
             </Td>
           </Tr>
-        )}
-        <Tr _last={{ h: "100%" }}>
-          <Td px={0}>{exercise.name}</Td>
-          <Td isNumeric px={0} pl={6}>
-            {exercise.reps}
-          </Td>
-          <Td isNumeric px={0} pl={6}>
-            {exercise.series}
-          </Td>
-        </Tr>
-      </>
-    ))
+        </>
+      ))
   } else
     return (
       <Tr>

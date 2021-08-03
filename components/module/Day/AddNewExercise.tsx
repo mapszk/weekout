@@ -24,8 +24,8 @@ interface Props {
 const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
   const [newExName, setNewExName] = useState<string>("")
   const [newExMuscle, setNewExMuscle] = useState<string>("quadriceps")
-  const [newExReps, setNewExReps] = useState<number>()
-  const [newExSeries, setNewExSeries] = useState<number>()
+  const [newExReps, setNewExReps] = useState<number>(1)
+  const [newExSeries, setNewExSeries] = useState<number>(1)
   const clearAll = (): void => {
     setNewExName("")
     setNewExMuscle("quadriceps")
@@ -34,7 +34,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
   }
   return (
     <Tr minW="500px" _last={{ h: "100%" }}>
-      <Td px={0}>
+      <Td border="none" px={0.5}>
         <HStack>
           <Button
             onClick={() => {
@@ -77,7 +77,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
           </Select>
         </HStack>
       </Td>
-      <Td px={0} pl={6} isNumeric>
+      <Td border="none" px={0} pl={6} isNumeric>
         <NumberInput
           defaultValue={newExReps}
           value={newExReps}
@@ -93,7 +93,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
           </NumberInputStepper>
         </NumberInput>
       </Td>
-      <Td px={0} pl={6} isNumeric>
+      <Td border="none" px={0} pl={6} pr={1} isNumeric>
         <NumberInput
           defaultValue={newExSeries}
           value={newExSeries}

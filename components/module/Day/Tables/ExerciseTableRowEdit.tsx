@@ -13,8 +13,8 @@ import {
 } from "@chakra-ui/react"
 import { ChangeEvent, FC } from "react"
 import { capitalize } from "util/capitalize"
-import AddNewExercise from "./AddNewExercise"
-import { Exercise } from "./dayTypes"
+import AddNewExercise from "../AddNewExercise"
+import { Exercise } from "../dayTypes"
 
 interface Props {
   volumeToEdit: Exercise[]
@@ -73,7 +73,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
       {volumeToEdit.length > 0 &&
         volumeToEdit.map((exerciseToEdit: Exercise) => (
           <Tr minW="500px" _last={{ h: "100%" }} key={exerciseToEdit.id}>
-            <Td px={0}>
+            <Td border="none" px={0.5}>
               <HStack>
                 <Button
                   onClick={() => handleRemoveExercise(exerciseToEdit.id)}
@@ -106,7 +106,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
                 </Select>
               </HStack>
             </Td>
-            <Td px={0} pl={6} isNumeric>
+            <Td border="none" px={0} pl={6} isNumeric>
               <NumberInput
                 defaultValue={exerciseToEdit.reps}
                 value={exerciseToEdit.reps}
@@ -124,7 +124,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
                 </NumberInputStepper>
               </NumberInput>
             </Td>
-            <Td px={0} pl={6} isNumeric>
+            <Td border="none" px={0} pl={6} pr={1} isNumeric>
               <NumberInput
                 defaultValue={exerciseToEdit.series}
                 value={exerciseToEdit.series}

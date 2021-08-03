@@ -31,7 +31,7 @@ const ExerciseTable: FC<Props> = ({
             <Th px={0} w="20%" isNumeric>
               Reps
             </Th>
-            <Th px={0} w="20%" isNumeric>
+            <Th px={0} pr={1} w="20%" isNumeric>
               Series
             </Th>
           </Tr>
