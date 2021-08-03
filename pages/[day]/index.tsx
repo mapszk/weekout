@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react"
-import ExerciseTable from "components/module/Day/ExerciseTable"
+import ExerciseTable from "components/module/Day/Tables/ExerciseTable"
 import VolumePicker from "components/module/Day/VolumePicker"
 import { GetServerSideProps } from "next"
 import Head from "next/head"

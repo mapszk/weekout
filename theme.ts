@@ -1,6 +1,8 @@
 import { extendTheme } from "@chakra-ui/react"
 import { Button } from "components/common/Button"
 import { Input } from "components/common/Input"
+import { Select } from "components/common/Select"
+import { NumberInput } from "components/common/NumberInput"
 
 export const customTheme = extendTheme({
   fonts: {
@@ -48,5 +50,7 @@ export const customTheme = extendTheme({
   components: {
     Button,
     Input,
+    Select,
+    NumberInput,
   },
 })

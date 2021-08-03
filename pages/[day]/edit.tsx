@@ -9,8 +9,8 @@ import DayHeader from "components/module/Day/DayHeader"
 import { Box, Flex } from "@chakra-ui/react"
 import VolumePicker from "components/module/Day/VolumePicker"
 import { useMediaQuery } from "hooks/useMediaQuery"
-import ExerciseTable from "components/module/Day/ExerciseTable"
 import Timer from "components/module/Timer/Timer"
+import ExerciseTableEdit from "components/module/Day/Tables/ExerciseTableEdit"
 
 interface Props {
   dayName: string
@@ -38,8 +38,7 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
       />
       <Flex direction={isBreakpoint ? "column" : "row"}>
         <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
-          <ExerciseTable
-            isEdit
+          <ExerciseTableEdit
             activeVolume={activeVolume}
             noneVolume={dayData.noneVolume}
             minVolume={dayData.minVolume}

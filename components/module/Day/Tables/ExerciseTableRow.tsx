@@ -27,6 +27,7 @@ const ExerciseTableRow: FC<Props> = ({ volume }) => {
         {!sameMuscle(volume, exercise, index) && (
           <Tr>
             <Td
+              px={0}
               py={3}
               fontSize="md"
               color="third.700"
@@ -38,16 +39,20 @@ const ExerciseTableRow: FC<Props> = ({ volume }) => {
           </Tr>
         )}
         <Tr _last={{ h: "100%" }}>
-          <Td>{exercise.name}</Td>
-          <Td isNumeric>{exercise.reps}</Td>
-          <Td isNumeric>{exercise.series}</Td>
+          <Td px={0}>{exercise.name}</Td>
+          <Td isNumeric px={0} pl={6}>
+            {exercise.reps}
+          </Td>
+          <Td isNumeric px={0} pl={6}>
+            {exercise.series}
+          </Td>
         </Tr>
       </>
     ))
   } else
     return (
-      <Tr h="100px">
-        <Td pt={20} textAlign="center" colSpan={3}>
+      <Tr>
+        <Td py={4} textAlign="center" colSpan={3}>
           There are no exercises for this volume
         </Td>
       </Tr>
