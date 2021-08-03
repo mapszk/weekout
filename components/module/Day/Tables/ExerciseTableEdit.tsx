@@ -21,24 +21,23 @@ interface Props {
   activeVolume: string
   noneVolume: Exercise[]
   minVolume: Exercise[]
+  midVolume: Exercise[]
   maxVolume: Exercise[]
-  plusMaxVolume: Exercise[]
 }
 
 const ExerciseTableEdit: FC<Props> = ({
   activeVolume,
   noneVolume,
   minVolume,
+  midVolume,
   maxVolume,
-  plusMaxVolume,
   dayName,
 }) => {
   const isBreakpoint = useMediaQuery(720)
   const [noneVolumeEdit, setNoneVolumeEdit] = useState<Exercise[]>(noneVolume)
   const [minVolumeEdit, setMinVolumeEdit] = useState<Exercise[]>(minVolume)
+  const [midVolumeEdit, setMidVolumeEdit] = useState<Exercise[]>(midVolume)
   const [maxVolumeEdit, setMaxVolumeEdit] = useState<Exercise[]>(maxVolume)
-  const [plusMaxVolumeEdit, setPlusMaxVolume] =
-    useState<Exercise[]>(plusMaxVolume)
 
   const { user } = useAuth()
   const toast = useToast()
@@ -97,14 +96,14 @@ const ExerciseTableEdit: FC<Props> = ({
             )}
             {activeVolume === "MAX" && (
               <ExerciseTableRowEdit
-                setVolume={setMaxVolumeEdit}
-                volumeToEdit={maxVolumeEdit}
+                setVolume={setMidVolumeEdit}
+                volumeToEdit={midVolumeEdit}
               />
             )}
             {activeVolume === "+MAX" && (
               <ExerciseTableRowEdit
-                setVolume={setPlusMaxVolume}
-                volumeToEdit={plusMaxVolumeEdit}
+                setVolume={setMaxVolumeEdit}
+                volumeToEdit={maxVolumeEdit}
               />
             )}
           </Tbody>
@@ -116,8 +115,8 @@ const ExerciseTableEdit: FC<Props> = ({
           handleClickSave({
             noneVolume: noneVolumeEdit,
             minVolume: minVolumeEdit,
+            midVolume: midVolumeEdit,
             maxVolume: maxVolumeEdit,
-            plusMaxVolume: plusMaxVolumeEdit,
           })
         }
         alignSelf="flex-end"

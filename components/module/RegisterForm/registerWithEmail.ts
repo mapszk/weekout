@@ -37,44 +37,44 @@ export const registerWithEmail = async (
                   sunday: {
                     noneVolume: [],
                     minVolume: [],
+                    midVolume: [],
                     maxVolume: [],
-                    plusMaxVolume: [],
                   },
                   monday: {
                     noneVolume: [],
                     minVolume: [],
+                    midVolume: [],
                     maxVolume: [],
-                    plusMaxVolume: [],
                   },
                   tuesday: {
                     noneVolume: [],
                     minVolume: [],
+                    midVolume: [],
                     maxVolume: [],
-                    plusMaxVolume: [],
                   },
                   wednesday: {
                     noneVolume: [],
                     minVolume: [],
+                    midVolume: [],
                     maxVolume: [],
-                    plusMaxVolume: [],
                   },
                   thursday: {
                     noneVolume: [],
                     minVolume: [],
+                    midVolume: [],
                     maxVolume: [],
-                    plusMaxVolume: [],
                   },
                   friday: {
                     noneVolume: [],
                     minVolume: [],
+                    midVolume: [],
                     maxVolume: [],
-                    plusMaxVolume: [],
                   },
                   saturday: {
                     noneVolume: [],
                     minVolume: [],
+                    midVolume: [],
                     maxVolume: [],
-                    plusMaxVolume: [],
                   },
                 })
             }

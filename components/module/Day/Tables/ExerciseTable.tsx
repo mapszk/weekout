@@ -8,16 +8,16 @@ interface Props {
   activeVolume: string
   noneVolume: Exercise[]
   minVolume: Exercise[]
+  midVolume: Exercise[]
   maxVolume: Exercise[]
-  plusMaxVolume: Exercise[]
 }
 
 const ExerciseTable: FC<Props> = ({
   activeVolume,
   noneVolume,
   minVolume,
+  midVolume,
   maxVolume,
-  plusMaxVolume,
 }) => {
   const isBreakpoint = useMediaQuery(720)
   return (
@@ -39,10 +39,8 @@ const ExerciseTable: FC<Props> = ({
         <Tbody verticalAlign="top">
           {activeVolume === "NONE" && <ExerciseTableRow volume={noneVolume} />}
           {activeVolume === "MIN" && <ExerciseTableRow volume={minVolume} />}
-          {activeVolume === "MAX" && <ExerciseTableRow volume={maxVolume} />}
-          {activeVolume === "+MAX" && (
-            <ExerciseTableRow volume={plusMaxVolume} />
-          )}
+          {activeVolume === "MAX" && <ExerciseTableRow volume={midVolume} />}
+          {activeVolume === "+MAX" && <ExerciseTableRow volume={maxVolume} />}
         </Tbody>
       </Table>
     </Box>

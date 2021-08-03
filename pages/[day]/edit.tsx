@@ -44,8 +44,8 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
             activeVolume={activeVolume}
             noneVolume={dayData.noneVolume}
             minVolume={dayData.minVolume}
+            midVolume={dayData.midVolume}
             maxVolume={dayData.maxVolume}
-            plusMaxVolume={dayData.plusMaxVolume}
           />
         </Box>
         <Box ml={isBreakpoint ? 0 : 4} flex="2 1 0">

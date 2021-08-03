@@ -50,21 +50,21 @@ const VolumePicker: FC<Props> = ({ activeVolume, setActiveVolume }) => {
           </Tag>
           <Tag
             cursor="pointer"
-            onClick={() => handleClick("MAX")}
+            onClick={() => handleClick("MID")}
             size="sm"
-            colorScheme={activeVolume === "MAX" ? "yellow" : "gray"}
-            opacity={activeVolume === "MAX" ? 1 : 0.5}
+            colorScheme={activeVolume === "MID" ? "yellow" : "gray"}
+            opacity={activeVolume === "MID" ? 1 : 0.5}
           >
-            MAX
+            MID
           </Tag>
           <Tag
             cursor="pointer"
-            onClick={() => handleClick("+MAX")}
+            onClick={() => handleClick("MAX")}
             size="sm"
-            colorScheme={activeVolume === "+MAX" ? "red" : "gray"}
-            opacity={activeVolume === "+MAX" ? 1 : 0.5}
+            colorScheme={activeVolume === "MAX" ? "red" : "gray"}
+            opacity={activeVolume === "MAX" ? 1 : 0.5}
           >
-            +MAX
+            MAX
           </Tag>
         </HStack>
       </Box>

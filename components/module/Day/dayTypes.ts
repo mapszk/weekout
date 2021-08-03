@@ -8,6 +8,6 @@ export interface Exercise {
 export interface DayData {
   noneVolume: Exercise[]
   minVolume: Exercise[]
+  midVolume: Exercise[]
   maxVolume: Exercise[]
-  plusMaxVolume: Exercise[]
 }
