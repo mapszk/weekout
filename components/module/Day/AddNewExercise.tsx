@@ -17,11 +17,12 @@ import { capitalize } from "util/capitalize"
 import { Exercise } from "./dayTypes"
 
 interface Props {
+  restDay: boolean
   muscleOptions: string[]
   addExercise: (newExercise: Exercise) => void
 }
 
-const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
+const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay }) => {
   const [newExName, setNewExName] = useState<string>("")
   const [newExMuscle, setNewExMuscle] = useState<string>("quadriceps")
   const [newExReps, setNewExReps] = useState<number>(1)
@@ -37,6 +38,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
       <Td border="none" px={0.5}>
         <HStack>
           <Button
+            disabled={restDay}
             onClick={() => {
               clearAll()
               addExercise({
@@ -55,6 +57,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
             +
           </Button>
           <Input
+            disabled={restDay}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setNewExName(e.target.value)
             }
@@ -62,6 +65,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
             value={newExName}
           />
           <Select
+            disabled={restDay}
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
               setNewExMuscle(e.target.value)
             }
@@ -79,6 +83,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
       </Td>
       <Td border="none" px={0} pl={6} isNumeric>
         <NumberInput
+          disabled={restDay}
           defaultValue={newExReps}
           value={newExReps}
           onChange={(value: string) => setNewExReps(Number(value))}
@@ -95,6 +100,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise }) => {
       </Td>
       <Td border="none" px={0} pl={6} pr={1} isNumeric>
         <NumberInput
+          disabled={restDay}
           defaultValue={newExSeries}
           value={newExSeries}
           onChange={(value: string) => setNewExSeries(Number(value))}

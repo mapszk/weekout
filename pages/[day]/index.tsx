@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react"
+import { Box, Center, Flex, Heading, Text } from "@chakra-ui/react"
 import ExerciseTable from "components/module/Day/Tables/ExerciseTable"
 import VolumePicker from "components/module/Day/VolumePicker"
 import { GetServerSideProps } from "next"
@@ -11,6 +11,7 @@ import { DayData } from "components/module/Day/dayTypes"
 import { useMediaQuery } from "hooks/useMediaQuery"
 import Timer from "components/module/Timer/Timer"
 import DayHeader from "components/module/Day/DayHeader"
+import Footer from "components/module/Day/Footer"
 
 interface Props {
   dayName: string
@@ -32,24 +33,52 @@ const day: FC<Props> = ({ dayName, dayData }) => {
         <title>{`Weekout - ${capitalize(dayName)}`}</title>
       </Head>
       <DayHeader dayName={dayName} />
-      <VolumePicker
-        activeVolume={activeVolume}
-        setActiveVolume={setActiveVolume}
-      />
-      <Flex direction={isBreakpoint ? "column" : "row"}>
-        <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
-          <ExerciseTable
+
+      {/* for training routine render this */}
+      {!dayData.restDay && (
+        <>
+          <VolumePicker
             activeVolume={activeVolume}
-            noneVolume={dayData.noneVolume}
-            minVolume={dayData.minVolume}
-            midVolume={dayData.midVolume}
-            maxVolume={dayData.maxVolume}
+            setActiveVolume={setActiveVolume}
           />
-        </Box>
-        <Box ml={isBreakpoint ? 0 : 4} flex="2 1 0">
-          <Timer />
-        </Box>
-      </Flex>
+          <Box minH="calc(100vh - 200px)">
+            <Flex direction={isBreakpoint ? "column" : "row"}>
+              <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
+                <ExerciseTable
+                  dayName={dayName}
+                  activeVolume={activeVolume}
+                  noneVolume={dayData.noneVolume}
+                  minVolume={dayData.minVolume}
+                  midVolume={dayData.midVolume}
+                  maxVolume={dayData.maxVolume}
+                />
+              </Box>
+              <Box ml={isBreakpoint ? 0 : 4} flex="2 1 0">
+                <Timer />
+              </Box>
+            </Flex>
+          </Box>
+        </>
+      )}
+
+      {/* if it's rest day render this  */}
+      {dayData.restDay && (
+        <Center minH="calc(100vh - 75px - 50px)" flexDirection="column">
+          <Heading
+            bgGradient="linear(to-r, secondary.500, primary.500)"
+            bgClip="text"
+            mb={1}
+            size="2xl"
+          >
+            Rest day!
+          </Heading>
+          <Text color="third.500" fontWeight="semibold">
+            Enjoy it :)
+          </Text>
+        </Center>
+      )}
+
+      <Footer />
     </>
   )
 }

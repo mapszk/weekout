@@ -6,6 +6,7 @@ export interface Exercise {
   series: number
 }
 export interface DayData {
+  restDay: boolean
   noneVolume: Exercise[]
   minVolume: Exercise[]
   midVolume: Exercise[]

@@ -11,6 +11,7 @@ import VolumePicker from "components/module/Day/VolumePicker"
 import { useMediaQuery } from "hooks/useMediaQuery"
 import Timer from "components/module/Timer/Timer"
 import ExerciseTableEdit from "components/module/Day/Tables/ExerciseTableEdit"
+import Footer from "components/module/Day/Footer"
 
 interface Props {
   dayName: string
@@ -37,21 +38,25 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
         activeVolume={activeVolume}
         setActiveVolume={setActiveVolume}
       />
-      <Flex direction={isBreakpoint ? "column" : "row"}>
-        <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
-          <ExerciseTableEdit
-            dayName={dayName}
-            activeVolume={activeVolume}
-            noneVolume={dayData.noneVolume}
-            minVolume={dayData.minVolume}
-            midVolume={dayData.midVolume}
-            maxVolume={dayData.maxVolume}
-          />
-        </Box>
-        <Box ml={isBreakpoint ? 0 : 4} flex="2 1 0">
-          <Timer isEdit />
-        </Box>
-      </Flex>
+      <Box minH="calc(100vh - 200px)">
+        <Flex direction={isBreakpoint ? "column" : "row"}>
+          <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
+            <ExerciseTableEdit
+              dayName={dayName}
+              restDay={dayData.restDay}
+              activeVolume={activeVolume}
+              noneVolume={dayData.noneVolume}
+              minVolume={dayData.minVolume}
+              midVolume={dayData.midVolume}
+              maxVolume={dayData.maxVolume}
+            />
+          </Box>
+          <Box ml={isBreakpoint ? 0 : 4} flex="2 1 0">
+            <Timer isEdit />
+          </Box>
+        </Flex>
+      </Box>
+      <Footer />
     </>
   )
 }

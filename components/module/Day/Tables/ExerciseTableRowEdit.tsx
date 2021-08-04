@@ -17,6 +17,7 @@ import AddNewExercise from "../AddNewExercise"
 import { Exercise } from "../dayTypes"
 
 interface Props {
+  restDay: boolean
   volumeToEdit: Exercise[]
   setVolume: (value: Exercise[]) => void
 }
@@ -34,7 +35,11 @@ const muscleOptions = [
   "core",
 ]
 
-const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
+const ExerciseTableRowEdit: FC<Props> = ({
+  volumeToEdit,
+  setVolume,
+  restDay,
+}) => {
   const handleAddExercise = (newExercise: Exercise): void => {
     const newVolume = [...volumeToEdit, newExercise]
     setVolume(newVolume)
@@ -76,6 +81,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
             <Td border="none" px={0.5}>
               <HStack>
                 <Button
+                  disabled={restDay}
                   onClick={() => handleRemoveExercise(exerciseToEdit.id)}
                   fontWeight="light"
                   size="xs"
@@ -84,6 +90,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
                   X
                 </Button>
                 <Input
+                  disabled={restDay}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     handleChangeName(e.target.value, exerciseToEdit.id)
                   }
@@ -91,6 +98,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
                   value={exerciseToEdit.name}
                 />
                 <Select
+                  disabled={restDay}
                   onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                     handleChangeMuscle(e.target.value, exerciseToEdit.id)
                   }
@@ -108,6 +116,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
             </Td>
             <Td border="none" px={0} pl={6} isNumeric>
               <NumberInput
+                disabled={restDay}
                 defaultValue={exerciseToEdit.reps}
                 value={exerciseToEdit.reps}
                 onChange={(value: string) =>
@@ -126,6 +135,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
             </Td>
             <Td border="none" px={0} pl={6} pr={1} isNumeric>
               <NumberInput
+                disabled={restDay}
                 defaultValue={exerciseToEdit.series}
                 value={exerciseToEdit.series}
                 onChange={(value: string) =>
@@ -145,6 +155,7 @@ const ExerciseTableRowEdit: FC<Props> = ({ volumeToEdit, setVolume }) => {
           </Tr>
         ))}
       <AddNewExercise
+        restDay={restDay}
         muscleOptions={muscleOptions}
         addExercise={handleAddExercise}
       />
