@@ -49,7 +49,7 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
           />
         </Box>
         <Box ml={isBreakpoint ? 0 : 4} flex="2 1 0">
-          <Timer />
+          <Timer isEdit />
         </Box>
       </Flex>
     </>

@@ -39,8 +39,8 @@ const ExerciseTable: FC<Props> = ({
         <Tbody verticalAlign="top">
           {activeVolume === "NONE" && <ExerciseTableRow volume={noneVolume} />}
           {activeVolume === "MIN" && <ExerciseTableRow volume={minVolume} />}
-          {activeVolume === "MAX" && <ExerciseTableRow volume={midVolume} />}
-          {activeVolume === "+MAX" && <ExerciseTableRow volume={maxVolume} />}
+          {activeVolume === "MID" && <ExerciseTableRow volume={midVolume} />}
+          {activeVolume === "MAX" && <ExerciseTableRow volume={maxVolume} />}
         </Tbody>
       </Table>
     </Box>

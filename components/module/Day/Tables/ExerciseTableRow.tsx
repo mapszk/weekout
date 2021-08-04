@@ -54,7 +54,7 @@ const ExerciseTableRow: FC<Props> = ({ volume }) => {
   } else
     return (
       <Tr>
-        <Td py={4} textAlign="center" colSpan={3}>
+        <Td border="none" py={16} textAlign="center" colSpan={3}>
           There are no exercises for this volume
         </Td>
       </Tr>

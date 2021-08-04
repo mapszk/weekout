@@ -94,13 +94,13 @@ const ExerciseTableEdit: FC<Props> = ({
                 volumeToEdit={minVolumeEdit}
               />
             )}
-            {activeVolume === "MAX" && (
+            {activeVolume === "MID" && (
               <ExerciseTableRowEdit
                 setVolume={setMidVolumeEdit}
                 volumeToEdit={midVolumeEdit}
               />
             )}
-            {activeVolume === "+MAX" && (
+            {activeVolume === "MAX" && (
               <ExerciseTableRowEdit
                 setVolume={setMaxVolumeEdit}
                 volumeToEdit={maxVolumeEdit}
