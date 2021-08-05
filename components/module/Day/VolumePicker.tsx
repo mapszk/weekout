@@ -22,7 +22,7 @@ const VolumePicker: FC<Props> = ({ activeVolume, setActiveVolume }) => {
         color="gray.500"
         size="sm"
       >
-        Volume training:
+        Training volume:
       </Heading>
       <HStack w="full" justifyContent={isBreakpoint ? "center" : "flex-start"}>
         <Tag

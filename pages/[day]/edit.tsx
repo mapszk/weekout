@@ -62,14 +62,6 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
           flex="2 1 0"
         >
           <Timer isEdit />
-          <Center py={4} px={12}>
-            <Text textAlign="center">
-              Need help about training volumes?{" "}
-              <Link fontWeight="semibold" color="third.500">
-                Check this
-              </Link>
-            </Text>
-          </Center>
         </Box>
       </Flex>
       <Footer />

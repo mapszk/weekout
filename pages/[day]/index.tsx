@@ -4,7 +4,6 @@ import {
   Center,
   Flex,
   Heading,
-  Link,
   LinkBox,
   LinkOverlay,
   Text,
@@ -73,14 +72,6 @@ const day: FC<Props> = ({ dayName, dayData }) => {
               flex="2 1 0"
             >
               <Timer />
-              <Center py={4} px={12}>
-                <Text textAlign="center">
-                  Need help about training volumes?{" "}
-                  <Link fontWeight="semibold" color="primary.500">
-                    Check this
-                  </Link>
-                </Text>
-              </Center>
             </Box>
           </Flex>
         </>

@@ -21,7 +21,7 @@ interface Props {
   volumeToEdit: Exercise[]
   setVolume: (value: Exercise[]) => void
 }
-const muscleOptions = [
+export const muscleOptions = [
   "quadriceps",
   "hamstrings",
   "buttocks",
