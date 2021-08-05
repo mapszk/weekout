@@ -30,7 +30,7 @@ const Section2: FC = () => {
     <Center
       id="section2"
       w="full"
-      py={12}
+      py={16}
       flexDirection={!isBreakpoint ? "row" : "column"}
     >
       <Stack mr={!isBreakpoint ? 24 : 0} mb={!isBreakpoint ? 0 : 12}>

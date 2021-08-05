@@ -17,12 +17,12 @@ const volumeNone: String[] = [
   "Dumbbell bench press",
 ]
 const volumeMin: String[] = ["Hammer curl", "Reverse curl"]
-const volumeMax: String[] = [
+const volumeMid: String[] = [
   "Push-ups",
   "Decline press",
   "Dumbbell bench press",
 ]
-const VolumePlusMax: String[] = [
+const volumeMax: String[] = [
   "Diamond push-up",
   "Overhead extension",
   "Tricep dips",
@@ -122,8 +122,8 @@ const Section3: FC = () => {
             </Box>
           ))}
         </Collapse>
-        <Collapse in={activeVolume === "MAX"}>
-          {volumeMax.map((ex, index) => (
+        <Collapse in={activeVolume === "MID"}>
+          {volumeMid.map((ex, index) => (
             <Box
               _notLast={{ mb: "2" }}
               key={index}
@@ -137,8 +137,8 @@ const Section3: FC = () => {
             </Box>
           ))}
         </Collapse>
-        <Collapse in={activeVolume === "+MAX"}>
-          {VolumePlusMax.map((ex, index) => (
+        <Collapse in={activeVolume === "MAX"}>
+          {volumeMax.map((ex, index) => (
             <Box
               _notLast={{ mb: "2" }}
               key={index}
