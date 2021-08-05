@@ -6,7 +6,7 @@ import { DayData } from "components/module/Day/dayTypes"
 import Head from "next/head"
 import { capitalize } from "util/capitalize"
 import DayHeader from "components/module/Day/DayHeader"
-import { Box, Flex } from "@chakra-ui/react"
+import { Box, Center, Flex, Link, Text } from "@chakra-ui/react"
 import VolumePicker from "components/module/Day/VolumePicker"
 import { useMediaQuery } from "hooks/useMediaQuery"
 import Timer from "components/module/Timer/Timer"
@@ -38,30 +38,40 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
         activeVolume={activeVolume}
         setActiveVolume={setActiveVolume}
       />
-      <Box pb={4} minH="calc(100vh - 250px)">
-        <Flex direction={isBreakpoint ? "column" : "row"}>
-          <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
-            <ExerciseTableEdit
-              dayName={dayName}
-              restDay={dayData.restDay}
-              activeVolume={activeVolume}
-              noneVolume={dayData.noneVolume}
-              minVolume={dayData.minVolume}
-              midVolume={dayData.midVolume}
-              maxVolume={dayData.maxVolume}
-            />
-          </Box>
-          <Box
-            position="sticky"
-            alignSelf={isBreakpoint ? "stretch" : "flex-start"}
-            top="4"
-            ml={isBreakpoint ? 0 : 4}
-            flex="2 1 0"
-          >
-            <Timer isEdit />
-          </Box>
-        </Flex>
-      </Box>
+      <Flex
+        pb={4}
+        minH="calc(100vh - 250px)"
+        direction={isBreakpoint ? "column" : "row"}
+      >
+        <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
+          <ExerciseTableEdit
+            dayName={dayName}
+            restDay={dayData.restDay}
+            activeVolume={activeVolume}
+            noneVolume={dayData.noneVolume}
+            minVolume={dayData.minVolume}
+            midVolume={dayData.midVolume}
+            maxVolume={dayData.maxVolume}
+          />
+        </Box>
+        <Box
+          position="sticky"
+          alignSelf={isBreakpoint ? "stretch" : "flex-start"}
+          top="4"
+          ml={isBreakpoint ? 0 : 4}
+          flex="2 1 0"
+        >
+          <Timer isEdit />
+          <Center py={4} px={12}>
+            <Text textAlign="center">
+              Need help about training volumes?{" "}
+              <Link fontWeight="semibold" color="third.500">
+                Check this
+              </Link>
+            </Text>
+          </Center>
+        </Box>
+      </Flex>
       <Footer />
     </>
   )

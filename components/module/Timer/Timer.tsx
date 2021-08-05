@@ -11,13 +11,14 @@ import {
   NumberInputStepper,
 } from "@chakra-ui/react"
 import { IoMdSettings } from "react-icons/io"
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 
 interface Props {
   isEdit?: boolean
 }
 
 const Timer: FC<Props> = ({ isEdit }) => {
+  const alarmRef = useRef<any>()
   const [editMode, setEditMode] = useState<boolean>(false)
   const [isActive, setIsActive] = useState<boolean>(false)
   const [minutesEdit, setMinutesEdit] = useState<number>(1)
@@ -53,6 +54,7 @@ const Timer: FC<Props> = ({ isEdit }) => {
         if (seconds === 0 && minutes === 0) {
           clearInterval(interval)
           setIsActive(false)
+          alarmRef.current.play()
           if (localStorage.getItem("timer") !== null) {
             const timer = JSON.parse(localStorage.getItem("timer") as string)
             setMinutes(timer.minutes || 1)
@@ -95,7 +97,7 @@ const Timer: FC<Props> = ({ isEdit }) => {
       color="white"
     >
       <Heading fontWeight="medium" fontSize="lg">
-        Timer
+        Rest time
       </Heading>
       {!editMode && (
         <>
@@ -134,6 +136,7 @@ const Timer: FC<Props> = ({ isEdit }) => {
               Stop
             </Button>
           </ButtonGroup>
+          <audio ref={alarmRef} src="/alarm.wav"></audio>
         </>
       )}
       {editMode && (
@@ -147,7 +150,7 @@ const Timer: FC<Props> = ({ isEdit }) => {
               w="5rem"
               size="md"
               max={99}
-              min={1}
+              min={0}
               value={minutesEdit}
               onChange={(value: string) => setMinutesEdit(Number(value))}
             >
@@ -165,7 +168,7 @@ const Timer: FC<Props> = ({ isEdit }) => {
               w="5rem"
               size="md"
               max={59}
-              min={1}
+              min={0}
               value={secondsEdit}
               onChange={(value: string) => setSecondsEdit(Number(value))}
             >

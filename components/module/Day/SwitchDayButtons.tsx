@@ -39,7 +39,7 @@ const getLink = (dayName: string, where: string) => {
       case "friday":
         return "/thursday"
       case "saturday":
-        return "/sunday"
+        return "/friday"
     }
   }
 }

@@ -4,6 +4,7 @@ import {
   Center,
   Flex,
   Heading,
+  Link,
   LinkBox,
   LinkOverlay,
   Text,
@@ -50,29 +51,38 @@ const day: FC<Props> = ({ dayName, dayData }) => {
             activeVolume={activeVolume}
             setActiveVolume={setActiveVolume}
           />
-          <Box minH="calc(100vh - 250px)">
-            <Flex direction={isBreakpoint ? "column" : "row"}>
-              <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
-                <ExerciseTable
-                  dayName={dayName}
-                  activeVolume={activeVolume}
-                  noneVolume={dayData.noneVolume}
-                  minVolume={dayData.minVolume}
-                  midVolume={dayData.midVolume}
-                  maxVolume={dayData.maxVolume}
-                />
-              </Box>
-              <Box
-                position="sticky"
-                alignSelf={isBreakpoint ? "stretch" : "flex-start"}
-                top="4"
-                ml={isBreakpoint ? 0 : 4}
-                flex="2 1 0"
-              >
-                <Timer />
-              </Box>
-            </Flex>
-          </Box>
+          <Flex
+            minH="calc(100vh - 250px)"
+            direction={isBreakpoint ? "column" : "row"}
+          >
+            <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
+              <ExerciseTable
+                dayName={dayName}
+                activeVolume={activeVolume}
+                noneVolume={dayData.noneVolume}
+                minVolume={dayData.minVolume}
+                midVolume={dayData.midVolume}
+                maxVolume={dayData.maxVolume}
+              />
+            </Box>
+            <Box
+              position="sticky"
+              alignSelf={isBreakpoint ? "stretch" : "flex-start"}
+              top="4"
+              ml={isBreakpoint ? 0 : 4}
+              flex="2 1 0"
+            >
+              <Timer />
+              <Center py={4} px={12}>
+                <Text textAlign="center">
+                  Need help about training volumes?{" "}
+                  <Link fontWeight="semibold" color="primary.500">
+                    Check this
+                  </Link>
+                </Text>
+              </Center>
+            </Box>
+          </Flex>
         </>
       )}
 
