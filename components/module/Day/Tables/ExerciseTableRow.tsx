@@ -30,7 +30,7 @@ const ExerciseTableRow: FC<Props> = ({ volume }) => {
             <Tr>
               <Td
                 borderBottom="1px"
-                borderBottomColor="gray.100"
+                borderBottomColor="third.200"
                 px={0}
                 py={3}
                 fontSize="md"
@@ -43,13 +43,26 @@ const ExerciseTableRow: FC<Props> = ({ volume }) => {
             </Tr>
           )}
           <Tr _last={{ h: "100%" }}>
-            <Td border="none" px={0.5}>
+            <Td borderBottom="1px" borderBottomColor="gray.100" px={0.5}>
               {exercise.name}
             </Td>
-            <Td border="none" isNumeric px={0} pl={6}>
+            <Td
+              borderBottom="1px"
+              borderBottomColor="gray.100"
+              isNumeric
+              px={0}
+              pl={6}
+            >
               {exercise.reps}
             </Td>
-            <Td border="none" isNumeric px={0} pl={6} pr={1}>
+            <Td
+              borderBottom="1px"
+              borderBottomColor="gray.100"
+              isNumeric
+              px={0}
+              pl={6}
+              pr={1}
+            >
               {exercise.series}
             </Td>
           </Tr>

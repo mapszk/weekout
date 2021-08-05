@@ -29,7 +29,6 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay }) => {
   const [newExSeries, setNewExSeries] = useState<number>(1)
   const clearAll = (): void => {
     setNewExName("")
-    setNewExMuscle("")
     setNewExReps(1)
     setNewExSeries(1)
   }
