@@ -1,4 +1,13 @@
-import { Box, Center, Flex, Heading, Text } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  LinkBox,
+  LinkOverlay,
+  Text,
+} from "@chakra-ui/react"
 import ExerciseTable from "components/module/Day/Tables/ExerciseTable"
 import VolumePicker from "components/module/Day/VolumePicker"
 import { GetServerSideProps } from "next"
@@ -41,7 +50,7 @@ const day: FC<Props> = ({ dayName, dayData }) => {
             activeVolume={activeVolume}
             setActiveVolume={setActiveVolume}
           />
-          <Box minH="calc(100vh - 200px)">
+          <Box minH="calc(100vh - 250px)">
             <Flex direction={isBreakpoint ? "column" : "row"}>
               <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
                 <ExerciseTable
@@ -53,7 +62,13 @@ const day: FC<Props> = ({ dayName, dayData }) => {
                   maxVolume={dayData.maxVolume}
                 />
               </Box>
-              <Box ml={isBreakpoint ? 0 : 4} flex="2 1 0">
+              <Box
+                position="sticky"
+                alignSelf={isBreakpoint ? "stretch" : "flex-start"}
+                top="4"
+                ml={isBreakpoint ? 0 : 4}
+                flex="2 1 0"
+              >
                 <Timer />
               </Box>
             </Flex>
@@ -63,7 +78,7 @@ const day: FC<Props> = ({ dayName, dayData }) => {
 
       {/* if it's rest day render this  */}
       {dayData.restDay && (
-        <Center minH="calc(100vh - 75px - 50px)" flexDirection="column">
+        <Center minH="calc(100vh - 75px - 100px)" flexDirection="column">
           <Heading
             bgGradient="linear(to-r, secondary.500, primary.500)"
             bgClip="text"
@@ -75,6 +90,13 @@ const day: FC<Props> = ({ dayName, dayData }) => {
           <Text color="third.500" fontWeight="semibold">
             Enjoy it :)
           </Text>
+          <LinkBox mt={4}>
+            <LinkOverlay href={`/${dayName}/edit`}>
+              <Button size="sm" colorScheme="primary">
+                Edit day
+              </Button>
+            </LinkOverlay>
+          </LinkBox>
         </Center>
       )}
 

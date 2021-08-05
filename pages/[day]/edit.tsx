@@ -38,7 +38,7 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
         activeVolume={activeVolume}
         setActiveVolume={setActiveVolume}
       />
-      <Box minH="calc(100vh - 200px)">
+      <Box pb={4} minH="calc(100vh - 250px)">
         <Flex direction={isBreakpoint ? "column" : "row"}>
           <Box mb={isBreakpoint ? 4 : 0} flex="3 1 0">
             <ExerciseTableEdit
@@ -51,7 +51,13 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
               maxVolume={dayData.maxVolume}
             />
           </Box>
-          <Box ml={isBreakpoint ? 0 : 4} flex="2 1 0">
+          <Box
+            position="sticky"
+            alignSelf={isBreakpoint ? "stretch" : "flex-start"}
+            top="4"
+            ml={isBreakpoint ? 0 : 4}
+            flex="2 1 0"
+          >
             <Timer isEdit />
           </Box>
         </Flex>

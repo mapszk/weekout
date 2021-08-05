@@ -8,6 +8,7 @@ export const saveDay = async (
   dayName: string,
   setIsSubmitting: (value: boolean) => void
 ): Promise<Alert> => {
+  setIsSubmitting(true)
   return await clientDb
     .collection("users")
     .doc(userUid)

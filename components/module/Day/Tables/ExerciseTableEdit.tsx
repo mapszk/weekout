@@ -124,7 +124,9 @@ const ExerciseTableEdit: FC<Props> = ({
         <FormLabel mb="0">Is rest day?</FormLabel>
         <Switch
           colorScheme="third"
-          onChange={(e) => setIsRestDay(e.target.checked)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setIsRestDay(e.target.checked)
+          }
           checked={isRestDay}
           defaultChecked={isRestDay}
         />
@@ -132,7 +134,12 @@ const ExerciseTableEdit: FC<Props> = ({
       <Flex mt={2} justifyContent="space-between">
         <LinkBox alignSelf="flex-start">
           <LinkOverlay href={`/${dayName}`}>
-            <Button size="sm" colorScheme="secondary" variant="outline">
+            <Button
+              isLoading={isSubmitting}
+              size="sm"
+              colorScheme="secondary"
+              variant="outline"
+            >
               Exit edit mode
             </Button>
           </LinkOverlay>

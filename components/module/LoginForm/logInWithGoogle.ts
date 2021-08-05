@@ -18,42 +18,49 @@ export const logInWithGoogle = async (
               .doc(user?.uid)
               .set({
                 sunday: {
+                  restDay: false,
                   noneVolume: [],
                   minVolume: [],
                   midVolume: [],
                   maxVolume: [],
                 },
                 monday: {
+                  restDay: false,
                   noneVolume: [],
                   minVolume: [],
                   midVolume: [],
                   maxVolume: [],
                 },
                 tuesday: {
+                  restDay: false,
                   noneVolume: [],
                   minVolume: [],
                   midVolume: [],
                   maxVolume: [],
                 },
                 wednesday: {
+                  restDay: false,
                   noneVolume: [],
                   minVolume: [],
                   midVolume: [],
                   maxVolume: [],
                 },
                 thursday: {
+                  restDay: false,
                   noneVolume: [],
                   minVolume: [],
                   midVolume: [],
                   maxVolume: [],
                 },
                 friday: {
+                  restDay: false,
                   noneVolume: [],
                   minVolume: [],
                   midVolume: [],
                   maxVolume: [],
                 },
                 saturday: {
+                  restDay: false,
                   noneVolume: [],
                   minVolume: [],
                   midVolume: [],
