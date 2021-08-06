@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react"
 import ExerciseTable from "components/module/Day/Tables/ExerciseTable"
 import VolumePicker from "components/module/Day/VolumePicker"
-import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { FC, useEffect, useState } from "react"
 import { capitalize } from "util/capitalize"
@@ -21,6 +20,7 @@ import { useMediaQuery } from "hooks/useMediaQuery"
 import Timer from "components/module/Timer/Timer"
 import DayHeader from "components/module/Day/DayHeader"
 import Footer from "components/module/Day/Footer"
+import { GetServerSidePropsContext } from "next"
 
 interface Props {
   dayName: string
@@ -106,7 +106,7 @@ const day: FC<Props> = ({ dayName, dayData }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   try {
     const cookies = nookies.get(ctx)
     const user = await adminAuth.verifyIdToken(cookies.token)
@@ -114,19 +114,18 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const data = doc.data()
     const { day } = ctx.query
     if (data) {
-      const dayData = data[day as string]
-      return {
-        props: {
-          dayName: day,
-          dayData,
-        },
-      }
-    } else {
-      return {
-        redirect: {
-          destination: "/404",
-          permanent: false,
-        },
+      const dayData: DayData = data[day as string]
+      if (dayData !== undefined) {
+        return {
+          props: {
+            dayName: day,
+            dayData,
+          },
+        }
+      } else {
+        return {
+          notFound: true,
+        }
       }
     }
   } catch (err) {

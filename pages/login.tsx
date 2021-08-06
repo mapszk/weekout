@@ -10,12 +10,7 @@ const login: FC = () => {
   return (
     <>
       <Head>
-        <body
-          style={{
-            background:
-              "linear-gradient(349deg, #ec89ef44 0%, rgba(255,255,255,0) 30%)",
-          }}
-        ></body>
+        <title>Weekout - Log in</title>
       </Head>
       <Flex minH="100vh" w="full" flexDir="column" alignItems="center">
         <Center justifySelf="flex-start" h="50px">

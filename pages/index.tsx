@@ -3,11 +3,8 @@ import { FC } from "react"
 import { adminAuth } from "util/firebaseServer"
 import nookies from "nookies"
 
-interface Props {
-  data: string
-}
-const index: FC<Props> = ({ data }) => {
-  return <div>{data}</div>
+const index: FC = () => {
+  return <div></div>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next"
+import { GetServerSidePropsContext } from "next"
 import { adminAuth, adminDb } from "util/firebaseServer"
 import nookies from "nookies"
 import { FC, useEffect, useState } from "react"
@@ -6,7 +6,7 @@ import { DayData } from "components/module/Day/dayTypes"
 import Head from "next/head"
 import { capitalize } from "util/capitalize"
 import DayHeader from "components/module/Day/DayHeader"
-import { Box, Center, Flex, Link, Text } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 import VolumePicker from "components/module/Day/VolumePicker"
 import { useMediaQuery } from "hooks/useMediaQuery"
 import Timer from "components/module/Timer/Timer"
@@ -31,7 +31,7 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
   return (
     <>
       <Head>
-        <title>{`Weekout - ${capitalize(dayName)}`}</title>
+        <title>{`Weekout - Editing ${capitalize(dayName)}`}</title>
       </Head>
       <DayHeader isEdit dayName={dayName} />
       <VolumePicker
@@ -69,28 +69,26 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   try {
     const cookies = nookies.get(ctx)
+    const { day } = ctx.query
     const user = await adminAuth.verifyIdToken(cookies.token)
     const doc = await adminDb.collection("users").doc(user.uid).get()
     const data = doc.data()
-    console.log(data)
-    const { day } = ctx.query
     if (data) {
-      const dayData = data[day as string]
-      return {
-        props: {
-          dayName: day,
-          dayData,
-        },
-      }
-    } else {
-      return {
-        redirect: {
-          destination: "/404",
-          permanent: false,
-        },
+      const dayData: DayData = data[day as string]
+      if (dayData !== undefined) {
+        return {
+          props: {
+            dayName: day,
+            dayData,
+          },
+        }
+      } else {
+        return {
+          notFound: true,
+        }
       }
     }
   } catch (err) {

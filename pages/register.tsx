@@ -10,12 +10,7 @@ const register: FC = () => {
   return (
     <>
       <Head>
-        <body
-          style={{
-            background:
-              "linear-gradient(9deg, #32ccff50 0%, rgba(255,255,255,0) 37%)",
-          }}
-        ></body>
+        <title>Weekout - Register</title>
       </Head>
       <Flex minH="100vh" w="full" flexDir="column" alignItems="center">
         <Center justifySelf="flex-start" h="50px">
