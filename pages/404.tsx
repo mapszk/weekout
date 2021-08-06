@@ -7,12 +7,16 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
+import Head from "next/head"
 import { FC } from "react"
 
 const notFound: FC = () => {
   const router = useRouter()
   return (
     <>
+      <Head>
+        <title>Weekout - Not found</title>
+      </Head>
       <Center h="50px">
         <LinkBox>
           <LinkOverlay href="/">
