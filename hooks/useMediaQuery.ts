@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 
+// media query to resolve Next ssr 
+
 export const useMediaQuery = (width: number): boolean => {
   const [targetReached, setTargetReached] = useState<boolean>(false)
   const updateTarget = useCallback((e) => {
