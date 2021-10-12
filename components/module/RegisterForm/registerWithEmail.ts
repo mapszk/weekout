@@ -1,4 +1,5 @@
 import { clientAuth, clientDb } from "util/firebaseClient"
+import { defaultData } from "./defaultData"
 
 export type Status = "error" | "success"
 export interface Alert {
@@ -23,6 +24,8 @@ export const registerWithEmail = async (
       .createUserWithEmailAndPassword(email, password)
       .then(async (userCredential) => {
         const { user } = userCredential
+        /* check if user already exists in database,
+          if it doesn't exists it will create default routine values */
         await clientDb
           .collection("users")
           .doc(user?.uid)
@@ -32,57 +35,7 @@ export const registerWithEmail = async (
               await clientDb
                 .collection("users")
                 .doc(user?.uid)
-                .set({
-                  sunday: {
-                    restDay: false,
-                    noneVolume: [],
-                    minVolume: [],
-                    midVolume: [],
-                    maxVolume: [],
-                  },
-                  monday: {
-                    restDay: false,
-                    noneVolume: [],
-                    minVolume: [],
-                    midVolume: [],
-                    maxVolume: [],
-                  },
-                  tuesday: {
-                    restDay: false,
-                    noneVolume: [],
-                    minVolume: [],
-                    midVolume: [],
-                    maxVolume: [],
-                  },
-                  wednesday: {
-                    restDay: false,
-                    noneVolume: [],
-                    minVolume: [],
-                    midVolume: [],
-                    maxVolume: [],
-                  },
-                  thursday: {
-                    restDay: false,
-                    noneVolume: [],
-                    minVolume: [],
-                    midVolume: [],
-                    maxVolume: [],
-                  },
-                  friday: {
-                    restDay: false,
-                    noneVolume: [],
-                    minVolume: [],
-                    midVolume: [],
-                    maxVolume: [],
-                  },
-                  saturday: {
-                    restDay: false,
-                    noneVolume: [],
-                    minVolume: [],
-                    midVolume: [],
-                    maxVolume: [],
-                  },
-                })
+                .set(defaultData)
             }
           })
         return {
