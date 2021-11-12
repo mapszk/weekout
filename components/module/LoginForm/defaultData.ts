@@ -1,51 +1,30 @@
 export const defaultData = {
   sunday: {
     restDay: false,
-    noneVolume: [],
-    minVolume: [],
-    midVolume: [],
-    maxVolume: [],
+    exercises: []
   },
   monday: {
     restDay: false,
-    noneVolume: [],
-    minVolume: [],
-    midVolume: [],
-    maxVolume: [],
+    exercises: []
   },
   tuesday: {
     restDay: false,
-    noneVolume: [],
-    minVolume: [],
-    midVolume: [],
-    maxVolume: [],
+    exercises: []
   },
   wednesday: {
     restDay: false,
-    noneVolume: [],
-    minVolume: [],
-    midVolume: [],
-    maxVolume: [],
+    exercises: []
   },
   thursday: {
     restDay: false,
-    noneVolume: [],
-    minVolume: [],
-    midVolume: [],
-    maxVolume: [],
+    exercises: []
   },
   friday: {
     restDay: false,
-    noneVolume: [],
-    minVolume: [],
-    midVolume: [],
-    maxVolume: [],
+    exercises: []
   },
   saturday: {
     restDay: false,
-    noneVolume: [],
-    minVolume: [],
-    midVolume: [],
-    maxVolume: [],
+    exercises: []
   },
 }
