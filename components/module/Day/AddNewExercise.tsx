@@ -20,9 +20,10 @@ interface Props {
   restDay: boolean
   muscleOptions: string[]
   addExercise: (newExercise: Exercise) => void
+  volume: "none" | "min" | "mid" | "max"
 }
 
-const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay }) => {
+const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay, volume }) => {
   const [newExName, setNewExName] = useState<string>("")
   const [newExMuscle, setNewExMuscle] = useState<string>("quadriceps")
   const [newExReps, setNewExReps] = useState<number>(1)
@@ -46,6 +47,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay }) => {
                 reps: Number(newExReps),
                 series: Number(newExSeries),
                 id: uniqid(),
+                volume
               })
             }}
             fontWeight="light"
@@ -61,6 +63,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay }) => {
               setNewExName(e.target.value)
             }
             size="sm"
+            placeholder="Exercise name"
             value={newExName}
           />
           <Select

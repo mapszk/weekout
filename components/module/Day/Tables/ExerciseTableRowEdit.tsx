@@ -16,11 +16,6 @@ import { capitalize } from "util/capitalize"
 import AddNewExercise from "../AddNewExercise"
 import { Exercise } from "../dayTypes"
 
-interface Props {
-  restDay: boolean
-  volumeToEdit: Exercise[]
-  setVolume: (value: Exercise[]) => void
-}
 export const muscleOptions = [
   "quadriceps",
   "hamstrings",
@@ -34,49 +29,43 @@ export const muscleOptions = [
   "soleus",
   "core",
 ]
+interface Props {
+  restDay: boolean
+  exercises: Exercise[]
+  setExercises: any
+  volume: "none" | "min" | "mid" | "max"
+}
 
 const ExerciseTableRowEdit: FC<Props> = ({
-  volumeToEdit,
-  setVolume,
+  setExercises,
+  exercises,
   restDay,
+  volume
 }) => {
+
   const handleAddExercise = (newExercise: Exercise): void => {
-    const newVolume = [...volumeToEdit, newExercise]
-    setVolume(newVolume)
+    setExercises((exercises: Exercise[]) => ([...exercises, newExercise]))
   }
   const handleRemoveExercise = (id: string): void => {
-    const newVolume = volumeToEdit.filter((ex: Exercise) => ex.id !== id)
-    setVolume(newVolume)
+    setExercises((exercises: Exercise[]) => exercises.filter(ex => ex.id !== id))
   }
   const handleChangeMuscle = (newMuscle: string, id: string): void => {
-    const newVolume = volumeToEdit.map((ex: Exercise) =>
-      ex.id === id ? { ...ex, muscle: newMuscle } : ex
-    )
-    setVolume(newVolume)
+    setExercises((exercises: Exercise[]) => exercises.map(ex => ex.id === id ? { ...ex, muscle: newMuscle } : ex))
   }
   const handleChangeName = (newName: string, id: string): void => {
-    const newVolume = volumeToEdit.map((ex: Exercise) =>
-      ex.id === id ? { ...ex, name: newName } : ex
-    )
-    setVolume(newVolume)
+    setExercises((exercises: Exercise[]) => exercises.map(ex => ex.id === id ? { ...ex, name: newName } : ex))
   }
   const handleChangeReps = (newReps: number, id: string): void => {
-    const newVolume = volumeToEdit.map((ex: Exercise) =>
-      ex.id === id ? { ...ex, reps: newReps } : ex
-    )
-    setVolume(newVolume)
+    setExercises((exercises: Exercise[]) => exercises.map(ex => ex.id === id ? { ...ex, reps: newReps } : ex))
   }
   const handleChangeSeries = (newSeries: number, id: string): void => {
-    const newVolume = volumeToEdit.map((ex: Exercise) =>
-      ex.id === id ? { ...ex, series: newSeries } : ex
-    )
-    setVolume(newVolume)
+    setExercises((exercises: Exercise[]) => exercises.map(ex => ex.id === id ? { ...ex, series: newSeries } : ex))
   }
 
   return (
     <>
-      {volumeToEdit.length > 0 &&
-        volumeToEdit.map((exerciseToEdit: Exercise) => (
+      {exercises.length > 0 &&
+        exercises.map(exerciseToEdit => (
           <Tr minW="500px" _last={{ h: "100%" }} key={exerciseToEdit.id}>
             <Td border="none" px={0.5}>
               <HStack>
@@ -158,6 +147,7 @@ const ExerciseTableRowEdit: FC<Props> = ({
         restDay={restDay}
         muscleOptions={muscleOptions}
         addExercise={handleAddExercise}
+        volume={volume}
       />
     </>
   )

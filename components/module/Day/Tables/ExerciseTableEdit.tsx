@@ -24,27 +24,18 @@ interface Props {
   restDay: boolean
   dayName: string
   activeVolume: string
-  noneVolume: Exercise[]
-  minVolume: Exercise[]
-  midVolume: Exercise[]
-  maxVolume: Exercise[]
+  exercises: Exercise[]
+  setExercises: any
 }
 
 const ExerciseTableEdit: FC<Props> = ({
   restDay,
   activeVolume,
-  noneVolume,
-  minVolume,
-  midVolume,
-  maxVolume,
   dayName,
+  exercises,
+  setExercises
 }) => {
-  const [noneVolumeEdit, setNoneVolumeEdit] = useState<Exercise[]>(noneVolume)
-  const [minVolumeEdit, setMinVolumeEdit] = useState<Exercise[]>(minVolume)
-  const [midVolumeEdit, setMidVolumeEdit] = useState<Exercise[]>(midVolume)
-  const [maxVolumeEdit, setMaxVolumeEdit] = useState<Exercise[]>(maxVolume)
   const [isRestDay, setIsRestDay] = useState(restDay)
-
   const { user } = useAuth()
   const toast = useToast()
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
@@ -92,29 +83,33 @@ const ExerciseTableEdit: FC<Props> = ({
             {activeVolume === "NONE" && (
               <ExerciseTableRowEdit
                 restDay={isRestDay}
-                setVolume={setNoneVolumeEdit}
-                volumeToEdit={noneVolumeEdit}
+                exercises={exercises.filter(ex => ex.volume === "none")}
+                setExercises={setExercises}
+                volume="none"
               />
             )}
             {activeVolume === "MIN" && (
               <ExerciseTableRowEdit
                 restDay={isRestDay}
-                setVolume={setMinVolumeEdit}
-                volumeToEdit={minVolumeEdit}
+                exercises={exercises.filter(ex => ex.volume === "min")}
+                setExercises={setExercises}
+                volume="min"
               />
             )}
             {activeVolume === "MID" && (
               <ExerciseTableRowEdit
                 restDay={isRestDay}
-                setVolume={setMidVolumeEdit}
-                volumeToEdit={midVolumeEdit}
+                exercises={exercises.filter(ex => ex.volume === "mid")}
+                setExercises={setExercises}
+                volume="mid"
               />
             )}
             {activeVolume === "MAX" && (
               <ExerciseTableRowEdit
                 restDay={isRestDay}
-                setVolume={setMaxVolumeEdit}
-                volumeToEdit={maxVolumeEdit}
+                exercises={exercises.filter(ex => ex.volume === "max")}
+                setExercises={setExercises}
+                volume="max"
               />
             )}
           </Tbody>
@@ -150,10 +145,7 @@ const ExerciseTableEdit: FC<Props> = ({
           onClick={() =>
             handleClickSave({
               restDay: isRestDay,
-              noneVolume: noneVolumeEdit,
-              minVolume: minVolumeEdit,
-              midVolume: midVolumeEdit,
-              maxVolume: maxVolumeEdit,
+              exercises,
             })
           }
           alignSelf="flex-end"

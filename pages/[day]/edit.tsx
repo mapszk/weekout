@@ -21,6 +21,7 @@ interface Props {
 const edit: FC<Props> = ({ dayName, dayData }) => {
   const isBreakpoint = useMediaQuery(720)
   const [activeVolume, setActiveVolume] = useState<string>("NONE")
+  const [exercisesEdit, setExercisesEdit] = useState(dayData.exercises)
 
   useEffect(() => {
     if (localStorage.getItem("selectedVolume") !== null) {
@@ -48,10 +49,8 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
             dayName={dayName}
             restDay={dayData.restDay}
             activeVolume={activeVolume}
-            noneVolume={dayData.noneVolume}
-            minVolume={dayData.minVolume}
-            midVolume={dayData.midVolume}
-            maxVolume={dayData.maxVolume}
+            exercises={exercisesEdit}
+            setExercises={setExercisesEdit}
           />
         </Box>
         <Box
@@ -70,8 +69,8 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
 }
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  const cookies = nookies.get(ctx)
   try {
-    const cookies = nookies.get(ctx)
     const { day } = ctx.query
     const user = await adminAuth.verifyIdToken(cookies.token)
     const doc = await adminDb.collection("users").doc(user.uid).get()
