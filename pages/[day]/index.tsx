@@ -58,10 +58,7 @@ const day: FC<Props> = ({ dayName, dayData }) => {
               <ExerciseTable
                 dayName={dayName}
                 activeVolume={activeVolume}
-                noneVolume={dayData.noneVolume}
-                minVolume={dayData.minVolume}
-                midVolume={dayData.midVolume}
-                maxVolume={dayData.maxVolume}
+                exercises={dayData.exercises}
               />
             </Box>
             <Box
