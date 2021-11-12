@@ -4,11 +4,9 @@ export interface Exercise {
   name: string
   reps: number
   series: number
+  volume: "none" | "min" | "mid" | "max"
 }
 export interface DayData {
   restDay: boolean
-  noneVolume: Exercise[]
-  minVolume: Exercise[]
-  midVolume: Exercise[]
-  maxVolume: Exercise[]
+  exercises: Exercise[]
 }
