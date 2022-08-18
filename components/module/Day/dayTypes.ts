@@ -3,12 +3,10 @@ export interface Exercise {
   muscle: string
   name: string
   reps: number
-  series: number
+  series: number,
+  volume: 'none' | 'min' | 'mid' | 'max'
 }
 export interface DayData {
   restDay: boolean
-  noneVolume: Exercise[]
-  minVolume: Exercise[]
-  midVolume: Exercise[]
-  maxVolume: Exercise[]
+  exercises: Exercise[]
 }

@@ -15,21 +15,13 @@ import { Exercise } from "../dayTypes"
 import ExerciseTableRow from "./ExerciseTableRow"
 
 interface Props {
-  dayName: string
-  activeVolume: string
-  noneVolume: Exercise[]
-  minVolume: Exercise[]
-  midVolume: Exercise[]
-  maxVolume: Exercise[]
+  dayName: string,
+  volume: Exercise[],
 }
 
 const ExerciseTable: FC<Props> = ({
   dayName,
-  activeVolume,
-  noneVolume,
-  minVolume,
-  midVolume,
-  maxVolume,
+  volume
 }) => {
   const isBreakpoint = useMediaQuery(720)
   return (
@@ -68,12 +60,7 @@ const ExerciseTable: FC<Props> = ({
             </Tr>
           </Thead>
           <Tbody verticalAlign="top">
-            {activeVolume === "NONE" && (
-              <ExerciseTableRow volume={noneVolume} />
-            )}
-            {activeVolume === "MIN" && <ExerciseTableRow volume={minVolume} />}
-            {activeVolume === "MID" && <ExerciseTableRow volume={midVolume} />}
-            {activeVolume === "MAX" && <ExerciseTableRow volume={maxVolume} />}
+            <ExerciseTableRow volume={volume} />
           </Tbody>
         </Table>
       </Box>
