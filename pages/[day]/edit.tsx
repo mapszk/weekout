@@ -69,8 +69,8 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
 }
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  const cookies = nookies.get(ctx)
   try {
-    const cookies = nookies.get(ctx)
     const { day } = ctx.query
     const user = await adminAuth.verifyIdToken(cookies.token)
     const doc = await adminDb.collection("users").doc(user.uid).get()

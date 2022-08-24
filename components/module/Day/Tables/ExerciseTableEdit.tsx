@@ -33,10 +33,9 @@ const ExerciseTableEdit: FC<Props> = ({
   volume,
   setVolume,
   activeVolume,
-  dayName,
+  dayName
 }) => {
   const [isRestDay, setIsRestDay] = useState(restDay)
-
   const { user } = useAuth()
   const toast = useToast()
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)

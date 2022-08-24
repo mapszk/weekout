@@ -1,32 +1,20 @@
 import { Td, Tr } from "@chakra-ui/react"
 import { FC } from "react"
 import { capitalize } from "util/capitalize"
+import { sameMuscle } from "util/sameMuscle"
 import { Exercise } from "../dayTypes"
 
 interface Props {
-  volume: any
+  exercises: any
 }
 
-const sameMuscle = (
-  volume: Exercise[],
-  exercise: Exercise,
-  index: number
-): boolean | void => {
-  if (index !== 0) {
-    const actualMuscle = exercise.muscle
-    const musclePrevExercise = volume[index - 1].muscle
-    if (actualMuscle === musclePrevExercise) return true
-    else return false
-  }
-}
-
-const ExerciseTableRow: FC<Props> = ({ volume }) => {
-  if (volume.length) {
-    return volume
+const ExerciseTableRow: FC<Props> = ({ exercises }) => {
+  if (exercises.length) {
+    return exercises
       .sort((a: Exercise, b: Exercise) => a.muscle.localeCompare(b.muscle))
-      .map((exercise: Exercise, index: number) => (
+      .map((ex: Exercise, index: number) => (
         <>
-          {!sameMuscle(volume, exercise, index) && (
+          {!sameMuscle(exercises, ex, index) && (
             <Tr>
               <Td
                 borderBottom="1px"
@@ -38,13 +26,13 @@ const ExerciseTableRow: FC<Props> = ({ volume }) => {
                 fontWeight="semibold"
                 colSpan={3}
               >
-                {capitalize(exercise.muscle)}
+                {capitalize(ex.muscle)}
               </Td>
             </Tr>
           )}
           <Tr _last={{ h: "100%" }}>
             <Td borderBottom="1px" borderBottomColor="gray.100" px={0.5}>
-              {exercise.name}
+              {ex.name}
             </Td>
             <Td
               borderBottom="1px"
@@ -53,7 +41,7 @@ const ExerciseTableRow: FC<Props> = ({ volume }) => {
               px={0}
               pl={6}
             >
-              {exercise.reps}
+              {ex.reps}
             </Td>
             <Td
               borderBottom="1px"
@@ -63,7 +51,7 @@ const ExerciseTableRow: FC<Props> = ({ volume }) => {
               pl={6}
               pr={1}
             >
-              {exercise.series}
+              {ex.series}
             </Td>
           </Tr>
         </>

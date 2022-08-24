@@ -33,6 +33,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay, active
     setNewExReps(1)
     setNewExSeries(1)
   }
+
   return (
     <Tr minW="500px" _last={{ h: "100%" }}>
       <Td border="none" px={0.5}>
@@ -63,6 +64,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay, active
               setNewExName(e.target.value)
             }
             size="sm"
+            placeholder="Exercise name"
             value={newExName}
           />
           <Select

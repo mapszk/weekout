@@ -33,18 +33,18 @@ const register: FC = () => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = nookies.get(ctx)
-  return await adminAuth
-    .verifyIdToken(cookies.token)
-    .then(() => {
-      return {
-        redirect: {
-          destination: "/",
-          permanent: false,
-        },
-      }
-    })
-    .catch(() => {
-      return { props: {} }
-    })
+  try {
+    await adminAuth.verifyIdToken(cookies.token)
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    }
+  } catch (err) {
+    return {
+      props: {}
+    }
+  }
 }
 export default register

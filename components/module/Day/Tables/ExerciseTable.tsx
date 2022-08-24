@@ -24,43 +24,26 @@ const ExerciseTable: FC<Props> = ({
   volume
 }) => {
   const isBreakpoint = useMediaQuery(720)
+
   return (
     <>
       <Box overflowX="auto">
         <Table overflowY="auto" h="auto" size={isBreakpoint ? "sm" : "md"}>
           <Thead>
             <Tr>
-              <Th
-                borderBottom="1px"
-                borderBottomColor="gray.100"
-                px={0}
-                w="60%"
-              >
+              <Th borderBottom="1px" borderBottomColor="gray.100" px={0} w="60%">
                 Exercise
               </Th>
-              <Th
-                borderBottom="1px"
-                borderBottomColor="gray.100"
-                px={0}
-                w="20%"
-                isNumeric
-              >
+              <Th borderBottom="1px" borderBottomColor="gray.100" px={0} w="20%" isNumeric>
                 Reps
               </Th>
-              <Th
-                borderBottom="1px"
-                borderBottomColor="gray.100"
-                px={0}
-                pr={1}
-                w="20%"
-                isNumeric
-              >
+              <Th borderBottom="1px" borderBottomColor="gray.100" px={0} pr={1} w="20%" isNumeric>
                 Series
               </Th>
             </Tr>
           </Thead>
           <Tbody verticalAlign="top">
-            <ExerciseTableRow volume={volume} />
+            <ExerciseTableRow exercises={volume} />
           </Tbody>
         </Table>
       </Box>
