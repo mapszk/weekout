@@ -24,16 +24,16 @@ interface Props {
   restDay: boolean
   dayName: string
   activeVolume: string
-  exercises: Exercise[]
-  setExercises: any
+  volume: Exercise[]
+  setVolume: any
 }
 
 const ExerciseTableEdit: FC<Props> = ({
   restDay,
+  volume,
+  setVolume,
   activeVolume,
-  dayName,
-  exercises,
-  setExercises
+  dayName
 }) => {
   const [isRestDay, setIsRestDay] = useState(restDay)
   const { user } = useAuth()
@@ -80,38 +80,12 @@ const ExerciseTableEdit: FC<Props> = ({
             </Tr>
           </Thead>
           <Tbody overflowX="auto" verticalAlign="top">
-            {activeVolume === "NONE" && (
-              <ExerciseTableRowEdit
-                restDay={isRestDay}
-                exercises={exercises.filter(ex => ex.volume === "none")}
-                setExercises={setExercises}
-                volume="none"
-              />
-            )}
-            {activeVolume === "MIN" && (
-              <ExerciseTableRowEdit
-                restDay={isRestDay}
-                exercises={exercises.filter(ex => ex.volume === "min")}
-                setExercises={setExercises}
-                volume="min"
-              />
-            )}
-            {activeVolume === "MID" && (
-              <ExerciseTableRowEdit
-                restDay={isRestDay}
-                exercises={exercises.filter(ex => ex.volume === "mid")}
-                setExercises={setExercises}
-                volume="mid"
-              />
-            )}
-            {activeVolume === "MAX" && (
-              <ExerciseTableRowEdit
-                restDay={isRestDay}
-                exercises={exercises.filter(ex => ex.volume === "max")}
-                setExercises={setExercises}
-                volume="max"
-              />
-            )}
+            <ExerciseTableRowEdit
+              restDay={isRestDay}
+              setVolume={setVolume}
+              activeVolume={activeVolume}
+              volumeToEdit={volume.filter(ex => ex.volume === activeVolume)}
+            />
           </Tbody>
         </Table>
       </Box>
@@ -145,7 +119,7 @@ const ExerciseTableEdit: FC<Props> = ({
           onClick={() =>
             handleClickSave({
               restDay: isRestDay,
-              exercises,
+              exercises: volume
             })
           }
           alignSelf="flex-end"

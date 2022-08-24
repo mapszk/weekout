@@ -18,12 +18,12 @@ import { Exercise } from "./dayTypes"
 
 interface Props {
   restDay: boolean
+  activeVolume: string
   muscleOptions: string[]
   addExercise: (newExercise: Exercise) => void
-  volume: "none" | "min" | "mid" | "max"
 }
 
-const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay, volume }) => {
+const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay, activeVolume }) => {
   const [newExName, setNewExName] = useState<string>("")
   const [newExMuscle, setNewExMuscle] = useState<string>("quadriceps")
   const [newExReps, setNewExReps] = useState<number>(1)
@@ -33,6 +33,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay, volume
     setNewExReps(1)
     setNewExSeries(1)
   }
+
   return (
     <Tr minW="500px" _last={{ h: "100%" }}>
       <Td border="none" px={0.5}>
@@ -47,7 +48,7 @@ const AddNewExercise: FC<Props> = ({ muscleOptions, addExercise, restDay, volume
                 reps: Number(newExReps),
                 series: Number(newExSeries),
                 id: uniqid(),
-                volume
+                volume: activeVolume as 'min' | 'mid' | 'none' | 'max'
               })
             }}
             fontWeight="light"

@@ -2,7 +2,7 @@ import { GetServerSidePropsContext } from "next"
 import { adminAuth, adminDb } from "util/firebaseServer"
 import nookies from "nookies"
 import { FC, useEffect, useState } from "react"
-import { DayData } from "components/module/Day/dayTypes"
+import { DayData, Exercise } from "components/module/Day/dayTypes"
 import Head from "next/head"
 import { capitalize } from "util/capitalize"
 import DayHeader from "components/module/Day/DayHeader"
@@ -20,8 +20,8 @@ interface Props {
 
 const edit: FC<Props> = ({ dayName, dayData }) => {
   const isBreakpoint = useMediaQuery(720)
-  const [activeVolume, setActiveVolume] = useState<string>("NONE")
-  const [exercisesEdit, setExercisesEdit] = useState(dayData.exercises)
+  const [activeVolume, setActiveVolume] = useState<string>("none")
+  const [volume, setVolume] = useState<Exercise[]>(dayData.exercises)
 
   useEffect(() => {
     if (localStorage.getItem("selectedVolume") !== null) {
@@ -49,8 +49,8 @@ const edit: FC<Props> = ({ dayName, dayData }) => {
             dayName={dayName}
             restDay={dayData.restDay}
             activeVolume={activeVolume}
-            exercises={exercisesEdit}
-            setExercises={setExercisesEdit}
+            setVolume={setVolume}
+            volume={volume}
           />
         </Box>
         <Box

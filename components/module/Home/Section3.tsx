@@ -32,7 +32,7 @@ const Section3: FC = () => {
   const [activeVolume, setActiveVolume] = useState<string>("NONE")
   const isBreakpoint = useMediaQuery(720)
   return (
-    <Center py={16} W="full" flexDirection={isBreakpoint ? "column" : "row"}>
+    <Center py={16} w="full" flexDirection={isBreakpoint ? "column" : "row"}>
       <Stack ml={!isBreakpoint ? 24 : 0} mb={!isBreakpoint ? 0 : 12}>
         <Heading color="secondary.500">Divide your training</Heading>
         <Text
